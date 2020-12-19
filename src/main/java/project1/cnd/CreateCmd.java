@@ -4,6 +4,7 @@ import converter.IConverter;
 import project1.io.FileHelper;
 import project1.model.Person;
 
+import javax.xml.bind.JAXBException;
 import java.util.List;
 
 public class CreateCmd {
@@ -13,7 +14,7 @@ public class CreateCmd {
         this.converter = converter;
     }
 
-    public void processCmd(List<Person> persons, String filename){
+    public void processCmd(List<Person> persons, String filename) throws JAXBException {
         String personsStr = converter.getStrFromPersons(persons);
         fileHelper.writeToFile(personsStr, filename);
     }
