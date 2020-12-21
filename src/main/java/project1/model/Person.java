@@ -1,10 +1,6 @@
 package project1.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
-@XmlRootElement
 public class Person {
     long id;
     String fname;
@@ -24,7 +20,6 @@ public class Person {
         this.city = city;
     }
 
-    @XmlAttribute
     public long getId() {
         return id;
     }
@@ -33,7 +28,6 @@ public class Person {
         this.id = id;
     }
 
-    @XmlElement
     public String getFname() {
         return fname;
     }
@@ -42,7 +36,6 @@ public class Person {
         this.fname = fname;
     }
 
-    @XmlElement
     public String getLname() {
         return lname;
     }
@@ -51,7 +44,6 @@ public class Person {
         this.lname = lname;
     }
 
-    @XmlElement
     public int getAge() {
         return age;
     }
@@ -60,7 +52,6 @@ public class Person {
         this.age = age;
     }
 
-    @XmlElement
     public String getCity() {
         return city;
     }
