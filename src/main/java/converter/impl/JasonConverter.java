@@ -39,7 +39,7 @@ public class JasonConverter implements IConverter {
  //      }
  //  }
 
-    public List<Person> fromPersonToStr(String strPersons){
+    public List<Person> getPersonsFromString(String strPersons){
         Gson gson = new Gson();
         List<Person> list =  new ArrayList<Person>();
         Type collectionType = new TypeToken<List<Person>>(){}.getType();

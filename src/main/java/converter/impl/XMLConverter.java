@@ -1,11 +1,7 @@
 package converter.impl;
 
-import com.thoughtworks.xstream.XStream;
 import converter.IConverter;
 import project1.model.Person;
-import project1.model.Persons;
-
-import javax.xml.bind.JAXBException;
 import java.util.List;
 
 public class XMLConverter implements IConverter {
@@ -27,6 +23,11 @@ public class XMLConverter implements IConverter {
  //           e.printStackTrace();
  //       }
 
+        return null;
+    }
+
+    @Override
+    public List<Person> getPersonsFromString(String strPersons) {
         return null;
     }
 }

@@ -25,10 +25,7 @@ public class FileHelper {
     }
 
     public String getFile(String name) throws IOException, ParseException {
-        String filePath = "C:\\Users\\01\\Desktop\\" + name;
         StringBuilder stringBuilder = new StringBuilder();
-        FileReader reader = new FileReader(filePath);
-        StringBuilder resultStringBuilder = new StringBuilder();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(name));
         String strLine = bufferedReader.readLine();
         stringBuilder.append(strLine);

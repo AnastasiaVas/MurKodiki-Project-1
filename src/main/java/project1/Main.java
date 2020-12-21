@@ -8,7 +8,6 @@ import project1.cnd.CreateCmd;
 import project1.io.FileHelper;
 import project1.model.Person;
 
-import javax.xml.bind.JAXBException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class Main {
-    public static void main (String args[]) throws IOException, ParseException, JAXBException {
+    public static void main (String args[]) throws IOException, ParseException {
         Person person1 = new Person(1111, "Vova", "Popov", 25, "Lviv");
         Person person2 = new Person(1567, "Vika", "Popova", 18, "Lviv");
         Person person3 = new Person(6790, "Andrey", "Volkov", 16, "Kyiv");
@@ -38,7 +37,7 @@ public class Main {
         FileHelper fl = new FileHelper();
         String strFile = fl.getFile("employees.json");
         System.out.println(strFile);
-        List<Person> mainList = converter.fromPersonToStr(strFile);
+        List<Person> mainList = converter.getPersonsFromString(strFile);
         System.out.println(mainList.get(0).getId());
     }
 }
