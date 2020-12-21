@@ -1,18 +1,13 @@
 package project1;
 
-import converter.IConverter;
 import converter.impl.JasonConverter;
-import converter.impl.XMLConverter;
 import org.json.simple.parser.ParseException;
-import project1.cnd.CreateCmd;
+import project1.cmd.StringFormatCmdProcessor;
 import project1.io.FileHelper;
 import project1.model.Person;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 public class Main {
@@ -27,8 +22,8 @@ public class Main {
         persons.add(person3);
         persons.add(person4);
         JasonConverter converter = new JasonConverter();
-        CreateCmd createCmd = new CreateCmd(converter);
-        createCmd.processCmd(persons, "employees.json");
+        StringFormatCmdProcessor stringFormatCmdProcessor = new StringFormatCmdProcessor(converter);
+//        stringFormatCmdProcessor.processCmd(persons, "employees.json");
 
  //       IConverter xmlConverter = new XMLConverter();
  //       CreateCmd createCmdXML = new CreateCmd(xmlConverter);
