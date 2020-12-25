@@ -1,7 +1,10 @@
 package project1;
 
+import converter.IConverter;
 import converter.impl.JasonConverter;
+import converter.impl.YamlConverter;
 import org.json.simple.parser.ParseException;
+import project1.cmd.Executable;
 import project1.cmd.StringFormatCmdProcessor;
 import project1.io.FileHelper;
 import project1.model.Person;
@@ -29,10 +32,14 @@ public class Main {
  //       CreateCmd createCmdXML = new CreateCmd(xmlConverter);
  //       createCmdXML.processCmd(persons, "employees.xml");
 
-        FileHelper fl = new FileHelper();
-        String strFile = fl.getFile("employees.json");
-        System.out.println(strFile);
-        List<Person> mainList = converter.getPersonsFromString(strFile);
-        System.out.println(mainList.get(0).getId());
+        IConverter yamlConverter = new YamlConverter();
+        Executable yamlStringFormatCMDProcessor = new StringFormatCmdProcessor(yamlConverter);
+        System.out.println(yamlStringFormatCMDProcessor.read("employees.yaml"));
+
+//        FileHelper fl = new FileHelper();
+//        String strFile = fl.getFile("employees.json");
+//        System.out.println(strFile);
+//        List<Person> mainList = converter.getPersonsFromString(strFile);
+//        System.out.println(mainList.get(0).getId());
     }
 }

@@ -1,5 +1,6 @@
 package project1.cmd;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import converter.IConverter;
 import org.json.simple.parser.ParseException;
 import project1.io.FileHelper;
@@ -16,7 +17,7 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void create(List<Person> persons, String fileName) {
+    public void create(List<Person> persons, String fileName) throws JsonProcessingException {
         String personsStr = converter.getStrFromPersons(persons);
         fileHelper.writeToFile(personsStr, fileName);
     }

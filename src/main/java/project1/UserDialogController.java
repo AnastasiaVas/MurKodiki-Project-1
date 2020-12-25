@@ -1,5 +1,6 @@
 package project1;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import dialog.UserDialog;
 import project1.cmd.Executable;
 import project1.model.Person;
@@ -13,7 +14,7 @@ public class UserDialogController {
     private final FormatFactory factory = new FormatFactory();
     private final UserDialog userDialog = new UserDialog();
 
-    public void command(String cmd, String fileName) {
+    public void command(String cmd, String fileName) throws JsonProcessingException {
         String format = determineFormat(fileName);
         Executable executor = factory.getInstance(format);
         executeCmd(executor, cmd, fileName);
@@ -23,7 +24,7 @@ public class UserDialogController {
         return fileName.substring(fileName.lastIndexOf(POINT)  + 1);
     }
 
-    private void executeCmd(Executable executor, String cmd, String fileName) {
+    private void executeCmd(Executable executor, String cmd, String fileName) throws JsonProcessingException {
         switch (cmd) {
             case Cmd.CREATE:
                 List<Person> persons = userDialog.typePersonData();

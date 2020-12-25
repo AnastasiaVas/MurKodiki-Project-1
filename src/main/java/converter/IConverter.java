@@ -1,9 +1,12 @@
 package converter;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import project1.model.Person;
+
+import java.io.IOException;
 import java.util.List;
 
 public interface IConverter {
-    String getStrFromPersons(List<Person> persons);
-    public List<Person> getPersonsFromString(String strPersons);
+    String getStrFromPersons(List<Person> persons) throws JsonProcessingException;
+    public List<Person> getPersonsFromString(String strPersons) throws IOException;
 }
