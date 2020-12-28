@@ -2,6 +2,7 @@ package project1;
 
 import converter.IConverter;
 import converter.impl.JasonConverter;
+import converter.impl.XMLConverter;
 import converter.impl.YamlConverter;
 import org.json.simple.parser.ParseException;
 import project1.cmd.Executable;
@@ -32,8 +33,14 @@ public class Main {
  //       CreateCmd createCmdXML = new CreateCmd(xmlConverter);
  //       createCmdXML.processCmd(persons, "employees.xml");
 
+        IConverter xmlConverter = new XMLConverter();
+        Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
+        xmlStringFormatCMDProcessor.create(persons,"employees.xml");
+
+
         IConverter yamlConverter = new YamlConverter();
         Executable yamlStringFormatCMDProcessor = new StringFormatCmdProcessor(yamlConverter);
+        yamlStringFormatCMDProcessor.create(persons,"employees.yaml");
         System.out.println(yamlStringFormatCMDProcessor.read("employees.yaml"));
 
 //        FileHelper fl = new FileHelper();

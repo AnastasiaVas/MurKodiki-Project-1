@@ -1,33 +1,28 @@
 package converter.impl;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import converter.IConverter;
 import project1.model.Person;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class XMLConverter implements IConverter {
 
     @Override
-    public String getStrFromPersons(List<Person> persons) {
- //       try {
- //           XStream xstream = new XStream();
- //           xstream.alias("person", Person.class);
- //           xstream.alias("persons", Persons.class);
- //           xstream.addImplicitCollection(Persons.class, "list");
-//
- //           Persons list = new Persons();
- //           list.add(new Person("ABC",12,"address"));
- //           list.add(new Person("XYZ",20,"address2"));
-//
- //           String xml = xstream.toXML(list);
- //       } catch (JAXBException e) {
- //           e.printStackTrace();
- //       }
-
-        return null;
+    public String getStrFromPersons(List<Person> persons) throws IOException {
+        final String XML = "<Person>...</Person>";
+        XmlMapper xmlMapper = new XmlMapper();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        xmlMapper.writeValue(byteArrayOutputStream, persons);
+        return byteArrayOutputStream.toString();
     }
 
     @Override
     public List<Person> getPersonsFromString(String strPersons) {
+
+
         return null;
     }
 }

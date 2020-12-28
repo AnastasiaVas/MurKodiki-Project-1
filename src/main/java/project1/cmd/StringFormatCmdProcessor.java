@@ -17,7 +17,7 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void create(List<Person> persons, String fileName) throws JsonProcessingException {
+    public void create(List<Person> persons, String fileName) throws IOException {
         String personsStr = converter.getStrFromPersons(persons);
         fileHelper.writeToFile(personsStr, fileName);
     }

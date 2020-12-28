@@ -2,6 +2,7 @@ package converter.impl;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -35,7 +36,7 @@ public class YamlConverter implements IConverter {
     @Override
     public List<Person> getPersonsFromString(String strPersons) throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        List<Person> enums = mapper.readValue(strPersons, List.class);
+        List<Person> enums = mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
         return enums;
     }
 }

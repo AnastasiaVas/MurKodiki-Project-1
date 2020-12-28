@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IConverter {
-    String getStrFromPersons(List<Person> persons) throws JsonProcessingException;
+    String getStrFromPersons(List<Person> persons) throws IOException;
     public List<Person> getPersonsFromString(String strPersons) throws IOException;
 }
