@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.MapType;
@@ -18,6 +19,8 @@ import project1.model.Persons;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +40,9 @@ public class YamlConverter implements IConverter {
     public List<Person> getPersonsFromString(String strPersons) throws IOException {
         System.out.println(strPersons);
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        List<Person> enums = mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
-        return enums;
+        List <Person> people = new ArrayList<Person>();
+        mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
+        return mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
     }
 }
 
