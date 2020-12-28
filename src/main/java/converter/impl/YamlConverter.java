@@ -35,6 +35,7 @@ public class YamlConverter implements IConverter {
 
     @Override
     public List<Person> getPersonsFromString(String strPersons) throws IOException {
+        System.out.println(strPersons);
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         List<Person> enums = mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
         return enums;

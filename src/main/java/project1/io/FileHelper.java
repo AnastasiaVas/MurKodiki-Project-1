@@ -24,11 +24,16 @@ public class FileHelper {
         System.out.println(person.toString());
     }
 
-    public String getFile(String name) throws IOException, ParseException {
-        StringBuilder stringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(name));
-        String strLine = bufferedReader.readLine();
-        stringBuilder.append(strLine);
-        return stringBuilder.toString();
-    }
+       public String getFile(String name) throws IOException, ParseException {
+               StringBuilder resultStringBuilder = new StringBuilder();
+               try (BufferedReader br
+                            = new BufferedReader(new FileReader(name))) {
+                   String line;
+                   while ((line = br.readLine()) != null) {
+                       resultStringBuilder.append(line).append("\n");
+                   }
+               }
+               return resultStringBuilder.toString();
+       }
+
 }

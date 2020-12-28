@@ -35,13 +35,16 @@ public class Main {
 
         IConverter xmlConverter = new XMLConverter();
         Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
-        xmlStringFormatCMDProcessor.create(persons,"employees.xml");
+        xmlStringFormatCMDProcessor.create(persons, "employees.xml");
+        List<Person> personsXML = xmlStringFormatCMDProcessor.read("employees.xml");
+        System.out.println(personsXML.get(1).getId());
 
 
         IConverter yamlConverter = new YamlConverter();
         Executable yamlStringFormatCMDProcessor = new StringFormatCmdProcessor(yamlConverter);
         yamlStringFormatCMDProcessor.create(persons,"employees.yaml");
-        System.out.println(yamlStringFormatCMDProcessor.read("employees.yaml"));
+        List<Person> personsYaml = yamlStringFormatCMDProcessor.read("employees.yaml");
+        System.out.println(personsYaml.get(1).getId());
 
 //        FileHelper fl = new FileHelper();
 //        String strFile = fl.getFile("employees.json");
