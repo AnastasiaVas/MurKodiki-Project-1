@@ -1,6 +1,5 @@
 package project1.cmd;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import converter.IConverter;
 import org.json.simple.parser.ParseException;
 import project1.io.FileHelper;
@@ -12,6 +11,7 @@ import java.util.List;
 public class StringFormatCmdProcessor implements Executable {
     FileHelper fileHelper = new FileHelper();
     IConverter converter;
+
     public StringFormatCmdProcessor(IConverter converter) {
         this.converter = converter;
     }
@@ -38,5 +38,6 @@ public class StringFormatCmdProcessor implements Executable {
         String content = fileHelper.getFile(fileName);
         String p = converter.removePersonsFromList(id, content);
         fileHelper.writeToFile(p, fileName);
+//        System.out.println(fileHelper.getFile(fileName));
     }
 }

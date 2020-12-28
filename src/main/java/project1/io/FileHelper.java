@@ -8,7 +8,9 @@ import project1.model.Person;
 import java.io.*;
 
 public class FileHelper {
-    public void writeToFile(String input, String filename){
+    StringBuilder resultStringBuilder = new StringBuilder();
+
+    public void writeToFile(String input, String filename) {
 
         try (FileWriter file = new FileWriter(filename)) {
 
@@ -20,20 +22,23 @@ public class FileHelper {
         }
     }
 
-    public void removeFromFile(Person person, String filename){
+    public void removeFromFile(Person person, String filename) {
         System.out.println(person.toString());
     }
 
-       public String getFile(String name) throws IOException {
-               StringBuilder resultStringBuilder = new StringBuilder();
-               try (BufferedReader br
-                            = new BufferedReader(new FileReader(name))) {
-                   String line;
-                   while ((line = br.readLine()) != null) {
-                       resultStringBuilder.append(line).append("\n");
-                   }
-               }
-               return resultStringBuilder.toString();
-       }
-       
+    public String getFile(String name) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(name))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        int count = 0;
+        if (count < 1) {
+            System.out.println(resultStringBuilder.toString());
+        }
+        count++;
+        return resultStringBuilder.toString();
+    }
+
 }

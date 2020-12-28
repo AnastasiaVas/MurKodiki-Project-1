@@ -2,7 +2,6 @@ package project1.cmd;
 
 import org.json.simple.parser.ParseException;
 import project1.model.Person;
-
 import java.io.IOException;
 import java.util.List;
 

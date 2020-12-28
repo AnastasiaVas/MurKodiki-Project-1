@@ -1,6 +1,5 @@
 package project1;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import dialog.UserDialog;
 import project1.cmd.Executable;
 import project1.model.Person;
@@ -22,7 +21,7 @@ public class UserDialogController {
     }
 
     private String determineFormat(String fileName) {
-        return fileName.substring(fileName.lastIndexOf(POINT)  + 1);
+        return fileName.substring(fileName.lastIndexOf(POINT) + 1);
     }
 
     private void executeCmd(Executable executor, String cmd, String fileName) throws IOException {
