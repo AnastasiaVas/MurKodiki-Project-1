@@ -43,8 +43,13 @@ public class JasonConverter implements IConverter {
         Gson gson = new Gson();
         List<Person> list =  new ArrayList<Person>();
         Type collectionType = new TypeToken<List<Person>>(){}.getType();
-        List<Person> enums = gson.fromJson(strPersons, collectionType);
-        return enums;
+        List<Person> persons = gson.fromJson(strPersons, collectionType);
+        return persons;
+    }
+
+    @Override
+    public  String removePersonsFromList(long id, String strPersons) throws IOException {
+        return null;
     }
 
 }

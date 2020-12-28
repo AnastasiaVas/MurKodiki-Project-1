@@ -9,4 +9,6 @@ import java.util.List;
 public interface IConverter {
     String getStrFromPersons(List<Person> persons) throws IOException;
     public List<Person> getPersonsFromString(String strPersons) throws IOException;
+    public  String removePersonsFromList(long id, String strPersons) throws IOException;
+
 }

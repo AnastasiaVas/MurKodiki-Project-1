@@ -9,7 +9,7 @@ import java.io.*;
 
 public class FileHelper {
     public void writeToFile(String input, String filename){
-        //Write JSON file
+
         try (FileWriter file = new FileWriter(filename)) {
 
             file.write(input);
@@ -24,7 +24,7 @@ public class FileHelper {
         System.out.println(person.toString());
     }
 
-       public String getFile(String name) throws IOException, ParseException {
+       public String getFile(String name) throws IOException {
                StringBuilder resultStringBuilder = new StringBuilder();
                try (BufferedReader br
                             = new BufferedReader(new FileReader(name))) {
@@ -35,5 +35,5 @@ public class FileHelper {
                }
                return resultStringBuilder.toString();
        }
-
+       
 }

@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class XMLConverter implements IConverter {
@@ -34,7 +35,20 @@ public class XMLConverter implements IConverter {
         return persons;
     }
 
-   // @Override
+    @Override
+    public  String removePersonsFromList(long id, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
+        Iterator<Person> iterator = persons.iterator();
+        while (iterator.hasNext()) {
+            Person item = iterator.next();
+            if (item.getId() == id) {
+                iterator.remove();
+            }
+        }
+        return getStrFromPersons(persons);
+    }
+
+    // @Override
    // public List<Person> getPersonsFromString(String strPersons) throws IOException {
    //     List<Person> list =  new ArrayList<Person>();
    //     XmlMapper xmlMapper = new XmlMapper();

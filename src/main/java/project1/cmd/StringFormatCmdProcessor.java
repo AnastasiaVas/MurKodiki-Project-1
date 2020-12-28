@@ -34,7 +34,9 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void delete(long id, String fileName) {
-
+    public void delete(long id, String fileName) throws IOException {
+        String content = fileHelper.getFile(fileName);
+        String p = converter.removePersonsFromList(id, content);
+        fileHelper.writeToFile(p, fileName);
     }
 }

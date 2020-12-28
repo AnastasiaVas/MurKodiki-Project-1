@@ -38,11 +38,15 @@ public class YamlConverter implements IConverter {
 
     @Override
     public List<Person> getPersonsFromString(String strPersons) throws IOException {
-        System.out.println(strPersons);
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         List <Person> people = new ArrayList<Person>();
         mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
         return mapper.readValue(strPersons,new TypeReference<List<Person>>(){});
+    }
+
+    @Override
+    public  String removePersonsFromList(long id, String strPersons) throws IOException {
+        return null;
     }
 }
 
