@@ -17,6 +17,9 @@ public class UserDialogController {
     private final UserDialog userDialog = new UserDialog();
     private final Scanner scanner = new Scanner(System.in);
     Executable executable;
+    String fieldToBeUpdated = "";
+    String valueToUpdate = "";
+    int idUpdate = 0;
 
 
     public void start() throws IOException, ParseException {
@@ -49,10 +52,32 @@ public class UserDialogController {
                     System.out.println(p);
                 }
                 executeCmd(fileName);
-//            case Cmd.UPDATE:
-//                List<Person> persons = userDialog.typePersonData();
-//                executable.update(persons, fileName);
-//                break;
+            case Cmd.UPDATE:
+                System.out.println("Введите id персоны которую вы хотите изменить");
+                if (scanner.hasNextInt()) {
+                    idUpdate = scanner.nextInt();
+                    scanner.nextLine();
+                } else {
+                    System.out.println("Некорректно введенный айди пользователя");
+                    executeCmd(fileName);
+                }
+                System.out.println("Введите какое значение вы хотите изменить (id, fname, lname, age, city)");
+                if (scanner.hasNextLine()) {
+                    fieldToBeUpdated = scanner.nextLine();
+                } else {
+                    System.out.println("Некорректно введенный айди пользователя");
+                    executeCmd(fileName);
+                }
+                System.out.println("Введите новое значение выбранного поля");
+                if (scanner.hasNextLine()) {
+                    valueToUpdate = scanner.nextLine();
+                } else {
+                    System.out.println("Некорректно введенный айди пользователя");
+                    executeCmd(fileName);
+                }
+                executable.update(idUpdate, fieldToBeUpdated, valueToUpdate, fileName);
+                System.out.println("Редактирование успешно завершено");
+                executeCmd(fileName);
             case Cmd.DELETE:
                 System.out.println("Введите айди пользователя, которого вы хотите удалить");
                 if (scanner.hasNextInt()) {
