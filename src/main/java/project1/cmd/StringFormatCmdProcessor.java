@@ -29,8 +29,10 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void update(List<Person> persons, String fileName) {
-
+    public void update(long id, String valueToBeUpdated, String valueToChange, String fileName) throws IOException {
+        String content = fileHelper.getFile(fileName);
+        String p = converter.updateDataInPerson(id, valueToBeUpdated, valueToChange, content);
+        fileHelper.writeToFile(p, fileName);
     }
 
     @Override

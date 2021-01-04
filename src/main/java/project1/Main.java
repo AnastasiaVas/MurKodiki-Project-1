@@ -33,17 +33,16 @@ public class Main {
         //       CreateCmd createCmdXML = new CreateCmd(xmlConverter);
         //       createCmdXML.processCmd(persons, "employees.xml");
 
-//        IConverter xmlConverter = new XMLConverter();
-//        Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
-//        xmlStringFormatCMDProcessor.create(persons, "employees.xml");
-//        List<Person> personsXML = xmlStringFormatCMDProcessor.read("employees.xml");
-//
-//
-        IConverter yamlConverter = new YamlConverter();
-        Executable yamlStringFormatCMDProcessor = new StringFormatCmdProcessor(yamlConverter);
+        IConverter xmlConverter = new XMLConverter();
+        Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
+        xmlStringFormatCMDProcessor.update(1567, "lname", "Barsukova", "employees.xml");
+
+
+//       IConverter yamlConverter = new YamlConverter();
+//       Executable yamlStringFormatCMDProcessor = new StringFormatCmdProcessor(yamlConverter);
 //        yamlStringFormatCMDProcessor.create(persons,"employees.yaml");
 //        yamlStringFormatCMDProcessor.delete(1111,"employees.yaml");
-        yamlStringFormatCMDProcessor.read("employees.yaml");
+//        yamlStringFormatCMDProcessor.read("employees.yaml");
 
 //        System.out.println(personsYaml.get(1).getId());
 

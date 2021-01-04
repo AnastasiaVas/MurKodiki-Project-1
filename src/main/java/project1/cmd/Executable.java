@@ -12,7 +12,7 @@ public interface Executable {
 
     List<Person> read(String fileName) throws IOException, ParseException;
 
-    void update(List<Person> persons, String fileName);
+    void update(long id, String valueToBeUpdated, String valueToChange, String fileName) throws IOException;
 
     void delete(long id, String fileName) throws IOException;
 }

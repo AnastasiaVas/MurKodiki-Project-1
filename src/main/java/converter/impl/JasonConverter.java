@@ -41,4 +41,10 @@ public class JasonConverter implements IConverter {
         return getStrFromPersons(persons);
     }
 
+    @Override
+    public String updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
+        return updateDataInPersonFromList(id, fieldToBeUpdated, valueToUpdate, persons);
+    }
+
 }

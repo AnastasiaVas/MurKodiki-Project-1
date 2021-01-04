@@ -17,7 +17,7 @@ public class BinaryFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void update(List<Person> persons, String fileName) {
+    public void update(long id, String valueToBeUpdated, String valueToChange, String fileName) throws IOException {
 
     }
 

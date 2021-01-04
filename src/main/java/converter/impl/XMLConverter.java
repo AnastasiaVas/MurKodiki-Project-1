@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import converter.IConverter;
 import project1.model.Person;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -22,7 +23,8 @@ public class XMLConverter implements IConverter {
 
     @Override
     public List<Person> getPersonsFromString(String strPersons) throws IOException {
-        return xmlMapper.readValue(strPersons, new TypeReference<List<Person>>() {});
+        return xmlMapper.readValue(strPersons, new TypeReference<List<Person>>() {
+        });
     }
 
     @Override
@@ -41,5 +43,11 @@ public class XMLConverter implements IConverter {
         }
         count++;
         return getStrFromPersons(persons);
+    }
+
+    @Override
+    public String updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
+        return updateDataInPersonFromList(id, fieldToBeUpdated, valueToUpdate, persons);
     }
 }

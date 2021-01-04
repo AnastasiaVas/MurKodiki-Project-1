@@ -41,5 +41,11 @@ public class YamlConverter implements IConverter {
         count++;
         return getStrFromPersons(persons);
     }
+
+    @Override
+    public String updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
+        return updateDataInPersonFromList(id, fieldToBeUpdated, valueToUpdate, persons);
+    }
 }
 
