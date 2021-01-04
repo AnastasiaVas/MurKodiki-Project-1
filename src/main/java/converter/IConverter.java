@@ -40,11 +40,11 @@ public interface IConverter {
                 }
             }
         }
-        int count = 0;
-        if (count < 1) {
-            System.out.println("Вид списка персон после апдейта персоны " + getStrFromPersons(persons));
-        }
-        count++;
+//        int count = 0;
+//        if (count < 1) {
+//            System.out.println("Вид списка персон после апдейта персоны " + getStrFromPersons(persons));
+//        }
+//        count++;
         return getStrFromPersons(persons);
     }
 }

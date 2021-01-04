@@ -33,11 +33,11 @@ public class FileHelper {
                 resultStringBuilder.append(line).append("\n");
             }
         }
-        int count = 0;
-        if (count < 1) {
-            System.out.println(resultStringBuilder.toString());
-        }
-        count++;
+//        int count = 0;
+//        if (count < 1) {
+//            System.out.println(resultStringBuilder.toString());
+//        }
+//        count++;
         return resultStringBuilder.toString();
     }
 

@@ -16,26 +16,28 @@ import java.util.List;
 
 public class Main {
     public static void main(String args[]) throws IOException, ParseException {
-        Person person1 = new Person(1111, "Vova", "Popov", 25, "Lviv");
-        Person person2 = new Person(1567, "Vika", "Popova", 18, "Lviv");
-        Person person3 = new Person(6790, "Andrey", "Volkov", 16, "Kyiv");
-        Person person4 = new Person(8997, "Vladislav", "Golovashchenko", 10, "Poltava");
-        List<Person> persons = new ArrayList<>();
-        persons.add(person1);
-        persons.add(person2);
-        persons.add(person3);
-        persons.add(person4);
-        JasonConverter converter = new JasonConverter();
-        StringFormatCmdProcessor stringFormatCmdProcessor = new StringFormatCmdProcessor(converter);
+        UserDialogController userDialogController = new UserDialogController();
+        userDialogController.start();
+//        Person person1 = new Person(1111, "Vova", "Popov", 25, "Lviv");
+//        Person person2 = new Person(1567, "Vika", "Popova", 18, "Lviv");
+//        Person person3 = new Person(6790, "Andrey", "Volkov", 16, "Kyiv");
+//        Person person4 = new Person(8997, "Vladislav", "Golovashchenko", 10, "Poltava");
+//        List<Person> persons = new ArrayList<>();
+//        persons.add(person1);
+//        persons.add(person2);
+//        persons.add(person3);
+//        persons.add(person4);
+//        JasonConverter converter = new JasonConverter();
+//        StringFormatCmdProcessor stringFormatCmdProcessor = new StringFormatCmdProcessor(converter);
 //        stringFormatCmdProcessor.processCmd(persons, "employees.json");
 
         //       IConverter xmlConverter = new XMLConverter();
         //       CreateCmd createCmdXML = new CreateCmd(xmlConverter);
         //       createCmdXML.processCmd(persons, "employees.xml");
 
-        IConverter xmlConverter = new XMLConverter();
-        Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
-        xmlStringFormatCMDProcessor.update(1567, "lname", "Barsukova", "employees.xml");
+//        IConverter xmlConverter = new XMLConverter();
+//        Executable xmlStringFormatCMDProcessor = new StringFormatCmdProcessor(xmlConverter);
+//        xmlStringFormatCMDProcessor.update(1567, "lname", "Barsukova", "employees.xml");
 
 
 //       IConverter yamlConverter = new YamlConverter();

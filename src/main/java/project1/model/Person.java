@@ -71,6 +71,10 @@ public class Person {
                 lname.equals(person.lname) &&
                 city.equals(person.city);
     }
+    @Override
+    public String toString() {
+        return "Id: "+id+" First Name: "+fname+" Last Name: "+lname+" Age: "+age+" City: "+city;
+    }
 
     @Override
     public int hashCode() {

@@ -32,12 +32,6 @@ public class JasonConverter implements IConverter {
                 iterator.remove();
             }
         }
-        int count = 0;
-        if (count < 1) {
-            System.out.println("Удаление выполнено успешно" + getStrFromPersons(persons));
-        }
-        count++;
-
         return getStrFromPersons(persons);
     }
 

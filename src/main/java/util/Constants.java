@@ -4,7 +4,7 @@ public class Constants {
 
     public static class Format {
         public final static String XML = "xml";
-        public final static String YML = "yml";
+        public final static String YAML = "yaml";
         public final static String CSV = "csv";
         public final static String JSON = "json";
     }
@@ -14,5 +14,9 @@ public class Constants {
         public final static String UPDATE = "update";
         public final static String READ = "read";
         public final static String DELETE = "delete";
+        public final static String EXIT = "exit";
+        public final static String HELP = "help";
+        public final static String SWITCH = "switch";
+        public final static String START = "start";
     }
 }

@@ -34,11 +34,6 @@ public class YamlConverter implements IConverter {
                 iterator.remove();
             }
         }
-        int count = 0;
-        if (count < 1) {
-            System.out.println("Вид списка персон после удаления персоны по id" + getStrFromPersons(persons));
-        }
-        count++;
         return getStrFromPersons(persons);
     }
 
