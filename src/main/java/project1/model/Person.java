@@ -73,7 +73,7 @@ public class Person {
     }
     @Override
     public String toString() {
-        return "Id: "+id+" First Name: "+fname+" Last Name: "+lname+" Age: "+age+" City: "+city;
+        return "Id: "+id+". First Name: "+fname+". Last Name: "+lname+". Age: "+age+". City: "+city;
     }
 
     @Override
