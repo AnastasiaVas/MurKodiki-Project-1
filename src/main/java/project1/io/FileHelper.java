@@ -8,7 +8,6 @@ import project1.model.Person;
 import java.io.*;
 
 public class FileHelper {
-    StringBuilder resultStringBuilder = new StringBuilder();
 
     public void writeToFile(String input, String filename) {
 
@@ -27,6 +26,7 @@ public class FileHelper {
     }
 
     public String getFile(String name) throws IOException {
+        StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(name))) {
             String line;
             while ((line = br.readLine()) != null) {
