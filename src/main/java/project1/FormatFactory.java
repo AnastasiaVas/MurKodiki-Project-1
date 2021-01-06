@@ -32,8 +32,11 @@ public class FormatFactory {
             case Format.JSON:
                 instance = jsonExecutable;
                 break;
-            default:
+            case Format.BINARY:
                 instance = binaryExecutable;
+                break;
+            default:
+                throw new IllegalArgumentException("Данная программа не работает введенным форматом.\n");
         }
         return instance;
     }

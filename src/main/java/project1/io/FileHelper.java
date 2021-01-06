@@ -1,18 +1,20 @@
 package project1.io;
 
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import project1.model.Person;
+import static project1.UserDialogController.fileName;
 
 import java.io.*;
 
 public class FileHelper {
 
-    public void writeToFile(String input, String filename) {
+    public boolean fileExists(){
+        File tempFile = new File(fileName);
+        return tempFile.exists();
+    }
 
-        try (FileWriter file = new FileWriter(filename)) {
+    public void writeToFile(String input) {
 
+        try (FileWriter file = new FileWriter(fileName)) {
+            
             file.write(input);
             file.flush();
 
@@ -21,13 +23,9 @@ public class FileHelper {
         }
     }
 
-    public void removeFromFile(Person person, String filename) {
-        System.out.println(person.toString());
-    }
-
-    public String getFile(String name) throws IOException {
+    public String getFile() throws IOException {
         StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(name))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 resultStringBuilder.append(line).append("\n");
@@ -40,5 +38,4 @@ public class FileHelper {
 //        count++;
         return resultStringBuilder.toString();
     }
-
 }

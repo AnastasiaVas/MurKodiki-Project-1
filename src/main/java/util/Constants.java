@@ -7,6 +7,7 @@ public class Constants {
         public final static String YAML = "yaml";
         public final static String CSV = "csv";
         public final static String JSON = "json";
+        public final static String BINARY = "bin";
     }
 
     public static class Cmd {
