@@ -1,19 +1,8 @@
 package project1;
 
-import converter.IConverter;
-import converter.impl.CSVConverter;
-import converter.impl.JasonConverter;
-import converter.impl.XMLConverter;
-import converter.impl.YamlConverter;
-import org.json.simple.parser.ParseException;
-import project1.cmd.Executable;
-import project1.cmd.StringFormatCmdProcessor;
-import project1.io.FileHelper;
-import project1.model.Person;
 
+import org.json.simple.parser.ParseException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String args[]) throws IOException, ParseException {
@@ -32,5 +21,7 @@ public class Main {
         //       StringFormatCmdProcessor stringFormatCmdProcessor = new StringFormatCmdProcessor(converter);
         //       stringFormatCmdProcessor.delete(1111, "persons.csv");
         //       System.out.println(stringFormatCmdProcessor.read("persons.csv"));
+
+
     }
 }

@@ -1,20 +1,19 @@
 package converter;
 
+import converter.impl.CSVConverter;
 import project1.model.Person;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
 public interface IConverter {
+
     String getStrFromPersons(List<Person> persons) throws IOException;
 
     public List<Person> getPersonsFromString(String strPersons) throws IOException;
 
-    public String removePersonsFromList(long id, String strPersons) throws IOException;
-
-    public String updateDataInPerson (long id, String fueldToBeUpdated, String valueToUpdate, String strPersons) throws IOException;
-
-    public default String updateDataInPersonFromList(long id, String fieldToBeUpdated, String valueToUpdate, List<Person> persons) throws IOException {
+    public default String updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
         Iterator<Person> iterator = persons.iterator();
         Person reqPerson;
         while (iterator.hasNext()) {
@@ -45,6 +44,19 @@ public interface IConverter {
 //            System.out.println("Вид списка персон после апдейта персоны " + getStrFromPersons(persons));
 //        }
 //        count++;
+
+        return getStrFromPersons(persons);
+    }
+
+    public default String removePersonsFromList(long id, String strPersons) throws IOException {
+        List<Person> persons = getPersonsFromString(strPersons);
+        Iterator<Person> iterator = persons.iterator();
+        while (iterator.hasNext()) {
+            Person item = iterator.next();
+            if (item.getId() == id) {
+                iterator.remove();
+            }
+        }
         return getStrFromPersons(persons);
     }
 }

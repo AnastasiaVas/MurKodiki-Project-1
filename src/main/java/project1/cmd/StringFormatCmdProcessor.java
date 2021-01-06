@@ -40,6 +40,5 @@ public class StringFormatCmdProcessor implements Executable {
         String content = fileHelper.getFile(fileName);
         String p = converter.removePersonsFromList(id, content);
         fileHelper.writeToFile(p, fileName);
-//        System.out.println(fileHelper.getFile(fileName));
     }
 }
