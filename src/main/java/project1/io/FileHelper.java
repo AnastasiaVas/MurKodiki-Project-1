@@ -6,17 +6,25 @@ import java.io.*;
 
 public class FileHelper {
 
-    public boolean fileExists(){
+    public boolean fileExists() {
         File tempFile = new File(fileName);
         return tempFile.exists();
     }
 
-    public void writeToFile(String input) {
+    public boolean fileIsEmpty(){
+        File file = new File(fileName);
+        if (file.length() != 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
 
-        try (FileWriter file = new FileWriter(fileName)) {
-            
-            file.write(input);
-            file.flush();
+    public void writeToFile(String input) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(fileName)) {
+
+            fileWriter.write(input);
+            fileWriter.flush();
 
         } catch (IOException e) {
             e.printStackTrace();

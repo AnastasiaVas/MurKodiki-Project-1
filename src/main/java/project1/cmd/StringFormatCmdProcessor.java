@@ -17,13 +17,18 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void create(List<Person> persons) throws IOException {
+    public void create(List<Person> persons) throws IOException, ParseException {
+        if(!fileHelper.fileIsEmpty()){
+            List<Person> personsFromFile =  read();
+            personsFromFile.addAll(persons);
+            persons = personsFromFile;
+        }
         String personsStr = converter.getStrFromPersons(persons);
         fileHelper.writeToFile(personsStr);
     }
 
     @Override
-    public List<Person> read() throws IOException, ParseException {
+    public List<Person> read() throws IOException {
         String content = fileHelper.getFile();
         return converter.getPersonsFromString(content);
     }

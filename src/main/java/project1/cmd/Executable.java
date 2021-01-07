@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Executable {
-    void create(List<Person> persons) throws IOException;
+    void create(List<Person> persons) throws IOException, ParseException;
 
     List<Person> read() throws IOException, ParseException;
 
