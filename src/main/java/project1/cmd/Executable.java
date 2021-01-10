@@ -9,9 +9,9 @@ import java.util.List;
 public interface Executable {
     void create(List<Person> persons) throws IOException, ParseException;
 
-    List<Person> read() throws IOException, ParseException;
+    List<Person> read() throws IOException, ParseException, ClassNotFoundException;
 
-    void update(long id, String valueToBeUpdated, String valueToChange) throws IOException;
+    void update(long id, String valueToBeUpdated, String valueToChange) throws IOException, ParseException, ClassNotFoundException;
 
-    void delete(long id) throws IOException;
+    void delete(long id) throws IOException, ParseException, ClassNotFoundException;
 }

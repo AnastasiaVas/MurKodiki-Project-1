@@ -50,7 +50,7 @@ public class UserDialogController {
                 String cmd = scanner.nextLine();
                 executeCmd(fileName, cmd);
                 break;
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException | ClassNotFoundException e) {
                 System.out.println("Файл не существует. Пожалуйста, создайте файл перед чтением либо выберите другой.");
             }
         }
@@ -61,7 +61,7 @@ public class UserDialogController {
         return fileName.substring(fileName.lastIndexOf(POINT) + 1);
     }
 
-    private void executeCmd(String fileName, String cmd) throws IOException, ParseException {
+    private void executeCmd(String fileName, String cmd) throws IOException, ParseException, ClassNotFoundException {
         switch (cmd) {
             case Cmd.CREATE:
                 List<Person> personsCreate = userDialog.typePersonData();

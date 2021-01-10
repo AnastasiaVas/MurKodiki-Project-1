@@ -1,7 +1,8 @@
 package project1.model;
 
+import java.io.Serializable;
 import java.util.Objects;
-public class Person {
+public class Person implements Serializable {
     long id;
     String fname;
     String lname;
