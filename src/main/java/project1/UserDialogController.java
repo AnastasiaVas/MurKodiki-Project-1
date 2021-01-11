@@ -161,6 +161,8 @@ public class UserDialogController {
                 mainMenu();
                 break;
             case Cmd.SWITCH:
+                isFileDataDownloaded = false;
+                personsBeforeSave.clear();
                 start();
                 break;
             case Cmd.START:
