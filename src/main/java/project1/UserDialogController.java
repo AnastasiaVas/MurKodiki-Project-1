@@ -68,7 +68,7 @@ public class UserDialogController {
             case Cmd.CREATE:
                 List<Person> personsCreate = userDialog.typePersonData();
                 executable.create(personsCreate);
-                System.out.println("Сохраните данные чтобы увидеть изменения в файле.");
+                System.out.println("Сохраните данные (start) чтобы увидеть изменения в файле.");
                 mainMenu();
                 break;
             case Cmd.READ:

@@ -12,3 +12,5 @@
 *.csv
 
 *.bin
+
+out/artifacts/MurKodikiProject_jar/CSV.jar
