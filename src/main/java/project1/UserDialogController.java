@@ -164,6 +164,7 @@ public class UserDialogController {
                 start();
                 break;
             case Cmd.START:
+                System.out.println("Сохранение данных успешно завершено");
                 executable.start();
                 mainMenu();
                 break;
