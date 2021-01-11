@@ -11,7 +11,7 @@ public class FileHelper {
         return tempFile.exists();
     }
 
-    public boolean fileIsEmpty(){
+    public boolean isFileEmpty(){
         File file = new File(fileName);
         if (file.length() != 0){
             return false;

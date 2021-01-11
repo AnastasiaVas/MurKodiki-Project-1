@@ -72,9 +72,13 @@ public class UserDialogController {
                 mainMenu();
                 break;
             case Cmd.READ:
-                List<Person> personsRead = executable.read();
-                for (Person p : personsRead) {
-                    System.out.println(p);
+                if (!fileHelper.isFileEmpty()) {
+                    List<Person> personsRead = executable.read();
+                    for (Person p : personsRead) {
+                        System.out.println(p);
+                    }
+                } else {
+                    System.out.println("В файле нет записей.");
                 }
                 mainMenu();
                 break;
@@ -166,8 +170,12 @@ public class UserDialogController {
                 start();
                 break;
             case Cmd.START:
-                System.out.println("Сохранение данных успешно завершено");
-                executable.start();
+                if (personsBeforeSave.size() != 0) {
+                    System.out.println("Сохранение данных успешно завершено");
+                    executable.start();
+                } else {
+                    System.out.println("Нет данных для сохранения.");
+                }
                 mainMenu();
                 break;
             default:

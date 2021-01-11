@@ -34,8 +34,7 @@ public class BinaryFormatCmdProcessor implements Executable {
     @Override
     public void update(long id, String valueToBeUpdated, String valueToChange) throws IOException, ParseException, ClassNotFoundException {
         isFileDataDownloaded(isFileDataDownloaded);
-        List<Person> persons = read();
-        Iterator<Person> iterator = persons.iterator();
+        Iterator<Person> iterator = personsBeforeSave.iterator();
         Person reqPerson;
         while (iterator.hasNext()) {
             Person item = iterator.next();
@@ -62,26 +61,17 @@ public class BinaryFormatCmdProcessor implements Executable {
                 }
             }
         }
-        FileOutputStream fos = new FileOutputStream(fileName);
-        ObjectOutputStream outputStream = new ObjectOutputStream(fos);
-        outputStream.writeObject(personsBeforeSave);
-        outputStream.close();
     }
 
     @Override
     public void delete(long id) throws ParseException, IOException, ClassNotFoundException {
         isFileDataDownloaded(isFileDataDownloaded);
-        List<Person> persons = read();
-        Iterator<Person> iterator = persons.iterator();
+        Iterator<Person> iterator = personsBeforeSave.iterator();
         while (iterator.hasNext()) {
             Person item = iterator.next();
             if (item.getId() == id) {
                 iterator.remove();
             }
         }
-        FileOutputStream fos = new FileOutputStream(fileName);
-        ObjectOutputStream outputStream = new ObjectOutputStream(fos);
-        outputStream.writeObject(personsBeforeSave);
-        outputStream.close();
     }
 }

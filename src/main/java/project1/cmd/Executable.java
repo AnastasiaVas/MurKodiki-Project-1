@@ -16,15 +16,14 @@ public interface Executable {
 
     default void create(List<Person> persons) throws IOException, ParseException, ClassNotFoundException {
         if (!isFileDataDownloaded) {
-            if (!fileHelper.fileIsEmpty()) {
+            if (!fileHelper.isFileEmpty()) {
                 List<Person> personsFromFile = read();
                 personsFromFile.addAll(persons);
                 personsBeforeSave = personsFromFile;
             }
             isFileDataDownloaded = true;
-        } else {
-            personsBeforeSave.addAll(persons);
         }
+            personsBeforeSave.addAll(persons);
     }
 
     void start() throws IOException;
@@ -37,7 +36,7 @@ public interface Executable {
 
     default void isFileDataDownloaded(boolean isFileDataDownloaded) throws ParseException, IOException, ClassNotFoundException {
         if (!isFileDataDownloaded) {
-            if (!fileHelper.fileIsEmpty()) {
+            if (!fileHelper.isFileEmpty()) {
                 List<Person> personsFromFile = read();
                 personsFromFile.addAll(personsBeforeSave);
                 personsBeforeSave = personsFromFile;
