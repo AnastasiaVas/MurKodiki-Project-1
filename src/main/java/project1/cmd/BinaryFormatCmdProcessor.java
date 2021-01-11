@@ -2,6 +2,7 @@ package project1.cmd;
 
 import org.json.simple.parser.ParseException;
 import project1.model.Person;
+import static project1.UserDialogController.*;
 
 import static project1.UserDialogController.fileName;
 
@@ -12,16 +13,17 @@ import java.util.List;
 import static project1.UserDialogController.fileName;
 
 public class BinaryFormatCmdProcessor implements Executable {
+
     @Override
-    public void create(List<Person> persons) throws IOException {
+    public void start() throws IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fos);
-        outputStream.writeObject(persons);
+        outputStream.writeObject(personsBeforeSave);
         outputStream.close();
     }
 
     @Override
-    public List<Person> read() throws IOException, ParseException, ClassNotFoundException {
+    public List<Person> read() throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(fis);
         List<Person> person = (List<Person>) ois.readObject();
@@ -31,6 +33,7 @@ public class BinaryFormatCmdProcessor implements Executable {
 
     @Override
     public void update(long id, String valueToBeUpdated, String valueToChange) throws IOException, ParseException, ClassNotFoundException {
+        isFileDataDownloaded(isFileDataDownloaded);
         List<Person> persons = read();
         Iterator<Person> iterator = persons.iterator();
         Person reqPerson;
@@ -54,17 +57,20 @@ public class BinaryFormatCmdProcessor implements Executable {
                     case "city":
                         reqPerson.setCity(valueToChange);
                         break;
+                    default:
+                        throw new IllegalArgumentException();
                 }
             }
         }
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fos);
-        outputStream.writeObject(persons);
+        outputStream.writeObject(personsBeforeSave);
         outputStream.close();
     }
 
     @Override
     public void delete(long id) throws ParseException, IOException, ClassNotFoundException {
+        isFileDataDownloaded(isFileDataDownloaded);
         List<Person> persons = read();
         Iterator<Person> iterator = persons.iterator();
         while (iterator.hasNext()) {
@@ -75,7 +81,7 @@ public class BinaryFormatCmdProcessor implements Executable {
         }
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fos);
-        outputStream.writeObject(persons);
+        outputStream.writeObject(personsBeforeSave);
         outputStream.close();
     }
 }

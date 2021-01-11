@@ -9,11 +9,13 @@ import util.Constants.Cmd;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
+import java.lang.instrument.IllegalClassFormatException;
+import java.util.*;
 
 public class UserDialogController {
 
+    public static boolean isFileDataDownloaded;
+    public static List<Person> personsBeforeSave = new ArrayList<>();
     private final static char POINT = '.';
     private final FormatFactory factory = new FormatFactory();
     private final UserDialog userDialog = new UserDialog();
@@ -22,7 +24,7 @@ public class UserDialogController {
     Executable executable;
     String fieldToBeUpdated = "";
     String valueToUpdate = "";
-    int idUpdate = 0;
+    long idUpdate = 0;
     FileHelper fileHelper = new FileHelper();
 
     public void start() throws IOException, ParseException {
@@ -66,60 +68,63 @@ public class UserDialogController {
             case Cmd.CREATE:
                 List<Person> personsCreate = userDialog.typePersonData();
                 executable.create(personsCreate);
-                System.out.println("Файл был успешно создан");
+                System.out.println("Сохраните данные чтобы увидеть изменения в файле.");
                 mainMenu();
+                break;
             case Cmd.READ:
                 List<Person> personsRead = executable.read();
                 for (Person p : personsRead) {
                     System.out.println(p);
                 }
                 mainMenu();
+                break;
             case Cmd.UPDATE:
                 if (fileHelper.fileExists()) {
-                    System.out.println("Введите id персоны которую вы хотите изменить");
-                    if (scanner.hasNextInt()) {
-                        idUpdate = scanner.nextInt();
-                        scanner.nextLine();
-                    } else {
-                        System.out.println("Некорректно введенный айди пользователя");
-                        mainMenu();
+                    while (true) {
+                        System.out.println("Введите id персоны которую вы хотите изменить");
+                        try {
+                            idUpdate = Long.parseLong(scanner.nextLine());
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Введенный id не найден.");
+                        }
                     }
-                    System.out.println("Введите какое значение вы хотите изменить (id, fname, lname, age, city)");
-                    if (scanner.hasNextLine()) {
+                    while (true) {
+                        System.out.println("Введите какое значение вы хотите изменить (id, fname, lname, age, city)");
                         fieldToBeUpdated = scanner.nextLine();
-                    } else {
-                        System.out.println("Некорректно введенный айди пользователя");
-                        mainMenu();
-                    }
-                    System.out.println("Введите новое значение выбранного поля");
-                    if (scanner.hasNextLine()) {
+                        System.out.println("Введите новое значение выбранного поля");
                         valueToUpdate = scanner.nextLine();
-                    } else {
-                        System.out.println("Некорректно введенный айди пользователя");
-                        mainMenu();
+                        try {
+                            executable.update(idUpdate, fieldToBeUpdated, valueToUpdate);
+                            System.out.println("Редактирование успешно завершено");
+                            mainMenu();
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Некорректно введено поле для изменения или неверный формат нового значения для поля.");
+                        }
                     }
-                    executable.update(idUpdate, fieldToBeUpdated, valueToUpdate);
-                    System.out.println("Редактирование успешно завершено");
-                    mainMenu();
-                } else{
-                  throw new FileNotFoundException();
-                }
-            case Cmd.DELETE:
-                if (fileHelper.fileExists()) {
-                System.out.println("Введите айди пользователя, которого вы хотите удалить");
-                if (scanner.hasNextInt()) {
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
-                    executable.delete(id);
                 } else {
-                    System.out.println("Некорректно введенный айди пользователя");
-                    mainMenu();
+                    throw new FileNotFoundException();
+                }
+                break;
+            case Cmd.DELETE:
+                while (true) {
+                    if (fileHelper.fileExists()) {
+                        System.out.println("Введите айди пользователя, которого вы хотите удалить.");
+                        try {
+                            long id = Long.parseLong(scanner.nextLine());
+                            executable.delete(id);
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Введенный id не найден.");
+                        }
+                    } else {
+                        throw new FileNotFoundException();
+                    }
                 }
                 System.out.println("Удаление выбранной вами персоны успешно завершено");
                 mainMenu();
-                } else{
-                    throw new FileNotFoundException();
-                }
+                break;
             case Cmd.EXIT:
                 System.out.println("Вы точно хотите выйти? Yes / No ");
                 String exitConformation = scanner.nextLine();
@@ -133,6 +138,7 @@ public class UserDialogController {
                     System.out.println("Команда подтверждения выхода была введена неправильно, попробуйте ещё раз ввести команду выхода");
                     mainMenu();
                 }
+                break;
             case Cmd.HELP:
                 System.out.println("Данная программа предназначена для создания, редактирования, удаления и чтения списка персон\n" +
                         "Для работы доступно 5 файловых форматов: .bin, .json, .csv, .xml и .yaml.\n" +
@@ -153,10 +159,14 @@ public class UserDialogController {
                         "switch - при вводе данной команды выполнится возврат в главное меню с возможностью выбора нового файла\n" +
                         "start - осуществляет сохранение измененных данных\n");
                 mainMenu();
+                break;
             case Cmd.SWITCH:
                 start();
+                break;
             case Cmd.START:
-                start();
+                executable.start();
+                mainMenu();
+                break;
             default:
                 System.out.printf("Command %s is not supported command", cmd);
                 mainMenu();

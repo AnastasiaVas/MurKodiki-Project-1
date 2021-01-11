@@ -7,7 +7,7 @@ import project1.model.Person;
 
 import java.io.IOException;
 import java.util.List;
-import static project1.UserDialogController.fileName;
+import static project1.UserDialogController.*;
 public class StringFormatCmdProcessor implements Executable {
     FileHelper fileHelper = new FileHelper();
     IConverter converter;
@@ -17,13 +17,8 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void create(List<Person> persons) throws IOException, ParseException {
-        if(!fileHelper.fileIsEmpty()){
-            List<Person> personsFromFile =  read();
-            personsFromFile.addAll(persons);
-            persons = personsFromFile;
-        }
-        String personsStr = converter.getStrFromPersons(persons);
+    public void start() throws IOException {
+        String personsStr = converter.getStrFromPersons(personsBeforeSave);
         fileHelper.writeToFile(personsStr);
     }
 
@@ -34,16 +29,16 @@ public class StringFormatCmdProcessor implements Executable {
     }
 
     @Override
-    public void update(long id, String valueToBeUpdated, String valueToChange) throws IOException {
-        String content = fileHelper.getFile();
-        String p = converter.updateDataInPerson(id, valueToBeUpdated, valueToChange, content);
-        fileHelper.writeToFile(p);
+    public void update(long id, String valueToBeUpdated, String valueToChange) throws IOException, ParseException, ClassNotFoundException {
+        isFileDataDownloaded(isFileDataDownloaded);
+        String content = converter.getStrFromPersons(personsBeforeSave);
+        personsBeforeSave = converter.updateDataInPerson(id, valueToBeUpdated, valueToChange, content);
     }
 
     @Override
-    public void delete(long id) throws IOException {
-        String content = fileHelper.getFile();
-        String p = converter.removePersonsFromList(id, content);
-        fileHelper.writeToFile(p);
+    public void delete(long id) throws IOException, ParseException, ClassNotFoundException {
+        isFileDataDownloaded(isFileDataDownloaded);
+        String content = converter.getStrFromPersons(personsBeforeSave);
+        personsBeforeSave = converter.removePersonsFromList(id, content);
     }
 }

@@ -12,13 +12,15 @@ public interface IConverter {
 
     public List<Person> getPersonsFromString(String strPersons) throws IOException;
 
-    public default String updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
+    public default List<Person> updateDataInPerson(long id, String fieldToBeUpdated, String valueToUpdate, String strPersons) throws IOException {
         List<Person> persons = getPersonsFromString(strPersons);
         Iterator<Person> iterator = persons.iterator();
+        boolean hasID = false;
         Person reqPerson;
         while (iterator.hasNext()) {
             Person item = iterator.next();
             if (item.getId() == id) {
+                hasID = true;
                 reqPerson = item;
                 switch (fieldToBeUpdated) {
                     case "id":
@@ -36,27 +38,33 @@ public interface IConverter {
                     case "city":
                         reqPerson.setCity(valueToUpdate);
                         break;
+                    default:
+                        throw new IllegalArgumentException();
                 }
             }
         }
-//        int count = 0;
-//        if (count < 1) {
-//            System.out.println("Вид списка персон после апдейта персоны " + getStrFromPersons(persons));
-//        }
-//        count++;
+        if (!hasID){
+            throw new IllegalArgumentException();
+        }
 
-        return getStrFromPersons(persons);
+        return persons;
     }
 
-    public default String removePersonsFromList(long id, String strPersons) throws IOException {
+    public default List<Person> removePersonsFromList(long id, String strPersons) throws IOException {
         List<Person> persons = getPersonsFromString(strPersons);
         Iterator<Person> iterator = persons.iterator();
+        boolean hasID = false;
         while (iterator.hasNext()) {
             Person item = iterator.next();
             if (item.getId() == id) {
                 iterator.remove();
+                hasID = true;
+                break;
             }
         }
-        return getStrFromPersons(persons);
+        if (!hasID){
+            throw new IllegalArgumentException();
+        }
+        return persons;
     }
 }

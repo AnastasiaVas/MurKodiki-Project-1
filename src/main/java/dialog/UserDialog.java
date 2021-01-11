@@ -8,7 +8,7 @@ public class UserDialog {
     Scanner scanner = new Scanner(System.in);
     public List<Person> typePersonData() {
         System.out.println("Введите колличество персон которое вы хотите добавить в файл: ");
-        int personNumber = scanner.nextInt();
+        long personNumber = scanner.nextLong();
         int personCounter = 1;
         List<Person> people = new ArrayList<>();
         int id = 0;
