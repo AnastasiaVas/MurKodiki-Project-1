@@ -1,0 +1,16 @@
+
+*.xml
+
+*.class
+
+*.iml
+
+*.json
+
+*.yaml
+
+*.csv
+
+*.bin
+
+out/artifacts/MurKodikiProject_jar/CSV.jar
